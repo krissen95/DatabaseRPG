@@ -1,1 +1,2 @@
 -- Her skal det stå kode, create tables
+-- helo
