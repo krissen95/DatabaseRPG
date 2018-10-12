@@ -41,3 +41,53 @@ CREATE TABLE Orders  # 'order' is reserved in MySQL
     CONSTRAINT OrdersUserAccountFK FOREIGN KEY (UserID) REFERENCES UserAccount(UserID),
     CONSTRAINT OrdersSubscriptionDealFK FOREIGN KEY (DealID) REFERENCES SubscriptionDeal(DealID)
 );
+
+CREATE TABLE Race 
+(
+	RaceName		INTEGER,
+    StrMod			INTEGER,
+    IntMod			INTEGER,
+    AgiMod			INTEGER,
+	RaceInformation	VARCHAR(100),
+    CONSTRAINT RaceNamePK PRIMARY KEY(RaceName)
+);
+
+CREATE TABLE PlayerCharacter  # 'Character' is reserved by MySQL
+(
+	CharName		INTEGER,
+	CharLevel		INTEGER,
+    Strength		INTEGER,
+    Inteligence		INTEGER,
+    Agility			INTEGER,
+	RaceName		INTEGER,
+    CONSTRAINT PlayerCharacterPK PRIMARY KEY(CharName),
+    CONSTRAINT PlayerRaceFK FOREIGN KEY(RaceName) REFERENCES Race(RaceName)
+);
+
+CREATE TABLE RaceFeatDependency
+(
+	Dependency		BOOL,
+    RaceName		INTEGER,
+    FeatName		INTEGER,
+	CONSTRAINT DependencyFK PRIMARY KEY (Dependency),
+    FOREIGN KEY(RaceName) REFERENCES Race(RaceName)
+	#FOREIGN KEY(FeatName) REFERENCES Feat(FeatName)  !Did not manage to get this assigned, perhaps a logic flaw..
+);
+
+CREATE TABLE Feat
+(
+	FeatName		INTEGER,
+	LevelReq		INTEGER,
+	FeatInformation	VARCHAR(100),
+	Dependency		BOOL,
+	CONSTRAINT FeatNamePK PRIMARY KEY (FeatName)
+	#CONSTRAINT DependencyFeatFK FOREIGN KEY(Dependency) REFERENCES RaceFeatDependency(Dependency) !Did not manage to get this assigned, perhaps a logic flaw..
+);
+
+CREATE TABLE CharFeats
+(
+	CharName	INTEGER,
+    FeatName	INTEGER,
+	FOREIGN KEY(CharName) REFERENCES PlayerCharacter(CharName),
+    FOREIGN KEY(FeatName) REFERENCES Feat(FeatName)
+);
