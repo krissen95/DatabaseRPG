@@ -44,33 +44,48 @@ CREATE TABLE Orders  # 'order' is reserved in MySQL
 
 CREATE TABLE Race 
 (
-	RaceName		INTEGER,
-    StrMod			INTEGER,
-    IntMod			INTEGER,
-    AgiMod			INTEGER,
+	RaceID			INT auto_increment,
+	RaceName		VARCHAR(20),
+    StrMod			FLOAT(3,2),
+    IntMod			FLOAT(3,2),
+    AgiMod			FLOAT(3,2),
 	RaceInformation	VARCHAR(100),
-    CONSTRAINT RaceNamePK PRIMARY KEY(RaceName)
+    CONSTRAINT RaceNamePK PRIMARY KEY(RaceID)
+);
+CREATE TABLE class
+(
+	classID			INT auto_increment,
+	className		VARCHAR(20),
+    strMod			FLOAT(3,2),
+    intMod			FLOAT(3,2),
+    agiMod			FLOAT(3,2),
+	classInfo		VARCHAR(100),
+    CONSTRAINT classNamePK PRIMARY KEY(classID)
 );
 
 CREATE TABLE PlayerCharacter  # 'Character' is reserved by MySQL
 (
-	CharName		INTEGER,
+	Player			INTEGER,
+	CharName		VARCHAR(20),
+    CharClass		INTEGER,
+    CharRace		INTEGER,
 	CharLevel		INTEGER,
     Strength		INTEGER,
     Inteligence		INTEGER,
     Agility			INTEGER,
-	RaceName		INTEGER,
     CONSTRAINT PlayerCharacterPK PRIMARY KEY(CharName),
-    CONSTRAINT PlayerRaceFK FOREIGN KEY(RaceName) REFERENCES Race(RaceName)
+    CONSTRAINT CharacterOwnerFK FOREIGN KEY (Player) REFERENCES UserAccount(UserID),
+    CONSTRAINT PlayerRaceFK FOREIGN KEY(CharRace) REFERENCES Race(RaceID),
+    CONSTRAINT PlayerClassFK FOREIGN KEY(CharClass) REFERENCES class(classID)
 );
 
 CREATE TABLE RaceFeatDependency
 (
 	Dependency		BOOL,
-    RaceName		INTEGER,
+    Race			INTEGER,
     FeatName		INTEGER,
 	CONSTRAINT DependencyFK PRIMARY KEY (Dependency),
-    FOREIGN KEY(RaceName) REFERENCES Race(RaceName)
+    FOREIGN KEY(Race) REFERENCES Race(RaceID)
 	#FOREIGN KEY(FeatName) REFERENCES Feat(FeatName)  !Did not manage to get this assigned, perhaps a logic flaw..
 );
 
@@ -86,8 +101,44 @@ CREATE TABLE Feat
 
 CREATE TABLE CharFeats
 (
-	CharName	INTEGER,
-    FeatName	INTEGER,
-	FOREIGN KEY(CharName) REFERENCES PlayerCharacter(CharName),
-    FOREIGN KEY(FeatName) REFERENCES Feat(FeatName)
+	CharName	VARCHAR(20),
+    Feat		INTEGER,
+	CONSTRAINT CharNameFK FOREIGN KEY(CharName) REFERENCES PlayerCharacter(CharName), -- Insisterer på at den ikkje kan lages
+    CONSTRAINT FeatFK FOREIGN KEY(Feat) REFERENCES Feat(FeatID)
 );
+
+CREATE TABLE chatLog
+(
+	messageTime		TIMESTAMP,
+    senderName		VARCHAR(20) NOT NULL,
+    recieverName	VARCHAR(20),
+    messageContent	VARCHAR(60),
+    CONSTRAINT chatLogPK PRIMARY KEY (messageTime),
+    CONSTRAINT chatLogSenderFK FOREIGN KEY (senderName) REFERENCES PlayerCharacter(CharName),
+    CONSTRAINT chatLogRecieverFK FOREIGN KEY (recieverName) REFERENCES PlayerCharacter(CharName)
+);
+
+-- -------------------------------------- Inserts
+
+INSERT INTO Race (RaceName, StrMod, IntMod, AgiMod, RaceInformation)
+VALUES 
+	('Human', 1, 1, 1, 'Something something'),
+    ('Beastman', 1.5, 0.5, 0.5, 'Strong and stuff, no smart'),
+    ('Elf', 0.85, 1.1, 1.25, 'They know parkour'),
+    ('Moon Elf', 0.5, 1.5, 0.85, 'They do not know parkour');
+    
+INSERT INTO class (className, strMod, intMod, agiMod, classInfo)
+VALUES
+	('Bard', 0.85, 1.1, 0.95, 'They play music'),
+    ('Fighter', 1.5, 0.5, 1, 'Hit stuff with club');
+    
+INSERT INTO UserAccount
+VALUES
+	(1, 'JonesBonny', '12345', 'John.smith51@gmail.com', TRUE, 1),
+    (2, 'ChristoffWilson', 'jgfks53jkkn51', 'xChrissyx420@hotmail.com', FALSE, 1);
+
+INSERT INTO PlayerCharacter
+VALUES
+	(1, 'JonnyTheBard', 1, 1, 1, 1, 1, 1),
+    (2, 'JamesWolfe', 2, 2, 15, 10, 6, 4);
+    
