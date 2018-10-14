@@ -118,6 +118,33 @@ CREATE TABLE chatLog
     CONSTRAINT chatLogRecieverFK FOREIGN KEY (recieverName) REFERENCES PlayerCharacter(CharName)
 );
 
+CREATE TABLE item_type
+(
+    typeName        VARCHAR(50) NOT NULL,
+    equip_slot        VARCHAR(50),
+    CONSTRAINT item_typePK PRIMARY KEY (typeName)
+);
+
+CREATE TABLE item 
+(
+    item_ID     INT NOT NULL,
+    item_Name     VARCHAR(45) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    quest_item     VARCHAR(255) NULL,
+    item_type    VARCHAR(50) NOT NULL,
+    CONSTRAINT item_IDPK PRIMARY KEY (item_ID),
+    FOREIGN KEY(item_type) REFERENCES item_type(typeName)
+);
+
+CREATE TABLE PlayerInventory
+(
+    owningCharacter    VARCHAR(20) NOT NULL,
+    item_ID            INT NOT NULL,
+    quantity         SMALLINT(4),
+    CONSTRAINT owningCharacterFK FOREIGN KEY (owningCharacter) REFERENCES PlayerCharacter(CharName),
+    CONSTRAINT item_IDFK FOREIGN KEY (item_ID) REFERENCES item(item_ID)
+);
+
 -- -------------------------------------- Inserts
 
 INSERT INTO Race (RaceName, StrMod, IntMod, AgiMod, RaceInformation)
