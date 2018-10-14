@@ -7,7 +7,7 @@ VALUES
     ('Elf', 0.85, 1.1, 1.25, 'They know parkour'),
     ('Moon Elf', 0.5, 1.5, 0.85, 'They do not know parkour');
     
-INSERT INTO class (className, strMod, intMod, agiMod, classInfo)
+INSERT INTO Class (ClassName, StrMod, IntMod, AgiMod, ClassInfo)
 VALUES
 	('Bard', 0.85, 1.1, 0.95, 'They play music'),
     ('Fighter', 1.5, 0.5, 1, 'Hit stuff with club');

@@ -53,15 +53,15 @@ CREATE TABLE Race
     CONSTRAINT RaceNamePK PRIMARY KEY(RaceID)
 );
 
-CREATE TABLE class
+CREATE TABLE Class
 (
-	classID			INT auto_increment,
-	className		VARCHAR(20),
-    strMod			FLOAT(3,2),
-    intMod			FLOAT(3,2),
-    agiMod			FLOAT(3,2),
-	classInfo		VARCHAR(100),
-    CONSTRAINT classNamePK PRIMARY KEY(classID)
+	ClassID			INT auto_increment,
+	ClassName		VARCHAR(20),
+    StrMod			FLOAT(3,2),
+    IntMod			FLOAT(3,2),
+    AgiMod			FLOAT(3,2),
+	ClassInfo		VARCHAR(100),
+    CONSTRAINT ClassNamePK PRIMARY KEY(ClassID)
 );
 
 CREATE TABLE PlayerCharacter  # 'Character' is reserved by MySQL
@@ -77,7 +77,7 @@ CREATE TABLE PlayerCharacter  # 'Character' is reserved by MySQL
     CONSTRAINT PlayerCharacterPK PRIMARY KEY(CharName),
     CONSTRAINT CharacterOwnerFK FOREIGN KEY (Player) REFERENCES UserAccount(UserID),
     CONSTRAINT PlayerRaceFK FOREIGN KEY(CharRace) REFERENCES Race(RaceID),
-    CONSTRAINT PlayerClassFK FOREIGN KEY(CharClass) REFERENCES class(classID)
+    CONSTRAINT PlayerClassFK FOREIGN KEY(CharClass) REFERENCES Class(ClassID)
 );
 
 CREATE TABLE RaceFeatDependency
@@ -108,40 +108,40 @@ CREATE TABLE CharFeats
     #CONSTRAINT FeatFK FOREIGN KEY(Feat) REFERENCES Feat(FeatID)
 );
 
-CREATE TABLE chatLog
+CREATE TABLE ChatLog
 (
-	messageTime		TIMESTAMP,
-    senderName		VARCHAR(20) NOT NULL,
-    recieverName	VARCHAR(20),
-    messageContent	VARCHAR(60),
-    CONSTRAINT chatLogPK PRIMARY KEY (messageTime),
-    CONSTRAINT chatLogSenderFK FOREIGN KEY (senderName) REFERENCES PlayerCharacter(CharName),
-    CONSTRAINT chatLogRecieverFK FOREIGN KEY (recieverName) REFERENCES PlayerCharacter(CharName)
+	MessageTime		TIMESTAMP,
+    SenderName		VARCHAR(20) NOT NULL,
+    RecieverName	VARCHAR(20),
+    MessageContent	VARCHAR(60),
+    CONSTRAINT ChatLogPK PRIMARY KEY (MessageTime),
+    CONSTRAINT ChatLogSenderFK FOREIGN KEY (SenderName) REFERENCES PlayerCharacter(CharName),
+    CONSTRAINT ChatLogRecieverFK FOREIGN KEY (RecieverName) REFERENCES PlayerCharacter(CharName)
 );
 
-CREATE TABLE item_type
+CREATE TABLE ItemType
 (
-    typeName        VARCHAR(50) NOT NULL,
-    equip_slot        VARCHAR(50),
-    CONSTRAINT item_typePK PRIMARY KEY (typeName)
+    TypeName        VARCHAR(50) NOT NULL,
+    EquipSlot        VARCHAR(50),
+    CONSTRAINT ItemTypePK PRIMARY KEY (TypeName)
 );
 
-CREATE TABLE item 
+CREATE TABLE Item 
 (
-    item_ID     INT NOT NULL,
-    item_Name     VARCHAR(45) NOT NULL,
-    description VARCHAR(255) NOT NULL,
-    quest_item     VARCHAR(255) NULL,
-    item_type    VARCHAR(50) NOT NULL,
-    CONSTRAINT item_IDPK PRIMARY KEY (item_ID),
-    FOREIGN KEY(item_type) REFERENCES item_type(typeName)
+    ItemID          INT NOT NULL,
+    ItemName        VARCHAR(45) NOT NULL,
+    Description     VARCHAR(255) NOT NULL,
+    QuestItem       VARCHAR(255) NULL,
+    ItemType        VARCHAR(50) NOT NULL,
+    CONSTRAINT ItemIDPK PRIMARY KEY (ItemID),
+    FOREIGN KEY(ItemType) REFERENCES ItemType(TypeName)
 );
 
 CREATE TABLE PlayerInventory
 (
-    owningCharacter    VARCHAR(20) NOT NULL,
-    item_ID            INT NOT NULL,
-    quantity         SMALLINT(4),
-    CONSTRAINT owningCharacterFK FOREIGN KEY (owningCharacter) REFERENCES PlayerCharacter(CharName),
-    CONSTRAINT item_IDFK FOREIGN KEY (item_ID) REFERENCES item(item_ID)
+    OwningCharacter VARCHAR(20) NOT NULL,
+    ItemID          INT NOT NULL,
+    Quantity        SMALLINT(4),
+    CONSTRAINT OwningCharacterFK FOREIGN KEY (OwningCharacter) REFERENCES PlayerCharacter(CharName),
+    CONSTRAINT ItemIDFK FOREIGN KEY (ItemID) REFERENCES Item(ItemID)
 );
