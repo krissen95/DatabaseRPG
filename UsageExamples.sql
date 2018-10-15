@@ -1,4 +1,4 @@
--- -------------------------------------- Inserts
+#------------------------- Static tables -------------------------#
 
 INSERT INTO Race (RaceName, StrMod, IntMod, AgiMod, RaceInformation)
 VALUES 
@@ -9,8 +9,26 @@ VALUES
     
 INSERT INTO Class (ClassName, StrMod, IntMod, AgiMod, ClassInfo)
 VALUES
-	('Bard', 0.85, 1.1, 0.95, 'They play music'),
-    ('Fighter', 1.5, 0.5, 1, 'Hit stuff with club');
+	('Bard',    0.85,   1.1,    0.95,   'They play music'),
+    ('Fighter', 1.5,    0.5,    1,      'Hit stuff with club'),
+    ('Rogue',   0.85,   1.5,    0.9,    'Sneaky people'),
+    ('Wizard',  0.5,    1.7,    0.75,   'Mystical magic users');
+
+INSERT INTO ItemType (TypeName, EquipSlot)
+VALUES
+	('Helmet',  'Head'),
+	('Cuirass',  'Torso'),
+	('Grieves',  'Legs'),
+	('Boots',  'Feet'),
+	('One Handed Weapon',  'Weapon2H'),
+	('Two Handed Weapon',  'Weapon1H'),
+	('Whield',  'Shield'),
+	('Consumable',  Null),
+	('Ingredient',  Null),
+	('Trash',  Null);
+    
+
+#------------------------- Inserts -------------------------#
     
 INSERT INTO UserAccount
 VALUES
