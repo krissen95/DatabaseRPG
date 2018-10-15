@@ -90,3 +90,13 @@ ALTER TABLE Item ADD Weight float AFTER ItemType;
 INSERT INTO Item
 VALUES
 (4, 'Bane of Light', 'A blade emitting a strange light.', FALSE, 'MeleeWeapon, 2-handed', 80.4);
+
+INSERT INTO chatLog
+VALUES
+	('2018-10-15 18:20:51', 'JonnyTheBard', NULL, 'I got hacked'),
+    ('2018-10-15 18:20:59', 'JamesWolfe', 'JonnyTheBard', 'Shut up you spoony bard'),
+    ('2018-10-15 18:21:03', 'JonnyTheBard', 'JamesWolfe', 'Why are you so mean?'),
+    ('2018-10-15 18:21:30', 'JamesWolfe', NULL, 'Selling lobbies 10 gold'),
+    ('2018-10-15 18:21:33', 'JamesWolfe', 'JonnyTheBard', 'STFU scrub'),
+    ('2018-10-15 18:22:01', 'JonnyTheBard', NULL, 'I am quitting this game'),
+    ('2018-10-15 18:22:06', 'JonnyTheBard', NULL, 'So many mean people');
