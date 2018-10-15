@@ -45,18 +45,13 @@ VALUES
 
 #------------------------- Inserts -------------------------#
 
-	FeatName		INTEGER,
-	LevelReq		INTEGER,
-    Dependency		INTEGER,  # If the feat requires another feat first
-    FeatInformation	VARCHAR(100),
 INSERT INTO Feat
 VALUES
     (1, 'Firebolt',        1, NULL, 'Learn to cast a bolt of fire.'),
     (2, 'Heroic Strike',   5, NULL, 'Learn deal a powerful blow.'),
     (3, 'Fireball',        5,    1, 'Learn to cast a huge ball of fire.'),
     (4, 'Medium armor proficiency',  6, NULL, 'Allows you to wear armor of medium weight.'),
-    (5, 'Heavy armor proficiency',  10,    4, 'Allows you to wear armor of heavy weight.'),
-
+    (5, 'Heavy armor proficiency',  10,    4, 'Allows you to wear armor of heavy weight.');
 
 INSERT INTO UserAccount
 VALUES
