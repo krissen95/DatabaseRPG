@@ -28,12 +28,30 @@ VALUES
 	('Trash',  Null);
     
 
+INSERT INTO SubscriptionDeal
+VALUES
+    ( 0,  30,  99.00, FALSE),
+    ( 1,  30,  99.00, TRUE),
+    ( 2,  90, 279.00, FALSE),
+    ( 3,  90, 279.00, TRUE),
+    ( 4, 180, 499.00, FALSE),
+    ( 5, 180, 499.00, TRUE),
+    ( 6, 365, 899.00, FALSE),
+    ( 7, 365, 899.00, TRUE);
+
+
 #------------------------- Inserts -------------------------#
     
 INSERT INTO UserAccount
 VALUES
 	(1, 'JonesBonny', '12345', 'John.smith51@gmail.com', TRUE, 1),
     (2, 'ChristoffWilson', 'jgfks53jkkn51', 'xChrissyx420@hotmail.com', FALSE, 1);
+
+INSERT INTO Orders
+VALUES
+    (1000, '2018-09-10 12:00:00',  1, 1),
+    (1001, '2018-10-02 12:00:00',  2, 2),
+    (1002, '2018-10-10 12:00:00',  1, 1);
 
 INSERT INTO PlayerCharacter
 VALUES
