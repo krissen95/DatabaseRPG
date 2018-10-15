@@ -115,9 +115,11 @@ CREATE TABLE ChatLog
     SenderName		VARCHAR(20) NOT NULL,
     RecieverName	VARCHAR(20),
     MessageContent	VARCHAR(60),
-    CONSTRAINT ChatLogPK PRIMARY KEY (MessageTime),
-    CONSTRAINT ChatLogSenderFK FOREIGN KEY (SenderName) REFERENCES PlayerCharacter(CharName),
-    CONSTRAINT ChatLogRecieverFK FOREIGN KEY (RecieverName) REFERENCES PlayerCharacter(CharName)
+    CONSTRAINT ChatLogPK PRIMARY KEY (MessageTime)
+    #CONSTRAINT ChatLogSenderFK FOREIGN KEY (SenderName) REFERENCES PlayerCharacter(CharName),
+    #CONSTRAINT ChatLogRecieverFK FOREIGN KEY (RecieverName) REFERENCES PlayerCharacter(CharName)
+    # The constraints does not seem to work properly. We are not allowed to insert anything if they are there.
+    # They are supposed to make sure each chat entry is sent and received by an existing character.
 );
 
 CREATE TABLE ItemType

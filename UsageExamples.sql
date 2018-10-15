@@ -27,7 +27,7 @@ VALUES
 
 INSERT INTO ChatLog
 VALUES
-	('2018-10-15 18:20:51', 'JonnyTheBard', NULL, 'I got hacked'),
+	('2018-10-15 18:20:51', 'JonnyTheBard', NULL, 'I got hacked'),  # receiver=Null => public chat
     ('2018-10-15 18:20:59', 'JamesWolfe', 'JonnyTheBard', 'Shut up you spoony bard'),
     ('2018-10-15 18:21:03', 'JonnyTheBard', 'JamesWolfe', 'Why are you so mean?'),
     ('2018-10-15 18:21:30', 'JamesWolfe', NULL, 'Selling lobbies 10 gold'),
