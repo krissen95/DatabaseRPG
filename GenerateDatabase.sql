@@ -123,7 +123,7 @@ CREATE TABLE ChatLog
 CREATE TABLE ItemType
 (
     TypeName        VARCHAR(50) NOT NULL,
-    EquipSlot       VARCHAR(50),
+    EquipSlot       INT,
     CONSTRAINT ItemTypePK PRIMARY KEY (TypeName)
 );
 

@@ -16,16 +16,19 @@ VALUES
 
 INSERT INTO ItemType (TypeName, EquipSlot)
 VALUES
-	('Helmet',  'Head'),
-	('Cuirass',  'Torso'),
-	('Grieves',  'Legs'),
-	('Boots',  'Feet'),
-	('One Handed Weapon',  'Weapon2H'),
-	('Two Handed Weapon',  'Weapon1H'),
-	('Whield',  'Shield'),
+    ('MeleeWeapon, 1-handed',  1),
+    ('MeleeWeapon, 2-handed',  1),
+    ('RangedWeapon, 1-handed', 1),
+    ('RangedWeapon, 2-handed', 1),
+    ('Shield',                 2),
+    ('Helmet',      3),
+	('Cuirass',     4),
+	('Grieves',     5),
+	('Boots',       6),
 	('Consumable',  Null),
 	('Ingredient',  Null),
-	('Trash',  Null);
+	('Trash',       Null);
+    ('Consumable',  NULL);
     
 
 INSERT INTO SubscriptionDeal
@@ -57,30 +60,20 @@ INSERT INTO PlayerCharacter
 VALUES
 	(1, 'JonnyTheBard', 1, 1, 1, 1, 1, 1),
     (2, 'JamesWolfe', 2, 2, 15, 10, 6, 4);
-    
-#Legger inn basis-typer, kunne lagt inn mange flere her 
-INSERT INTO item_type
-VALUES
-('Melee Weapon, 1-handed', 1),
-('Tower Shield, 1-handed', 2),
-('Melee Weapon, 2-handed', 5),
-('Ranged Weapon, 1-handed', 4),
-('Ranged Weapon, 2-handed', 5),
-('Quest Item', NULL),
-('Consumable', NULL);
 
 #Legger inn noen verdier her, initielt kunne ID vært AI, men tenker at å bare ha tall for items ikke er oversiktlig nok
 #Da er det best å bruke f.eks. "W1M" før tallet (betyr da "Weapon 1-handed Main hand") og VARCHAR i stedet for INT
-INSERT INTO item
+INSERT INTO Item
 VALUES
-(1, 'Dagger', 'Longer than a butter knife, but not quite a proper sword.', NULL, 'Melee Weapon, 1-handed'),
-(2, 'Shield of The Ancients', 'Generic holy shield used in the War of The Ancients. Pretty rusty, so it would not do good in combat.', 'The Quest For The Holy Grail', 'Melee Weapon, 1-handed'),
-(3, 'Health potion', 'Heals for 50HP, 20 seconds cooldown', NULL, 'Consumable');
+(1, 'Dagger', 'Longer than a butter knife, but not quite a proper sword.', FALSE, 'Melee Weapon, 1-handed'),
+(2, 'Shield of The Ancients', 'Generic holy shield used in the War of The Ancients. Pretty rusty, so it would not do good in combat.', TRUE, 'Shield'),
+(3, 'Health potion', 'Heals for 50HP, 20 seconds cooldown', FALSE, 'Consumable'),
+(4, 'Iron Cuiras', 'Gives 20 armor', FALSE, 'Cuirass');
 
 
 #Legger til en ny column i item for å kunne vite vekten til gjenstandene (her målt i kg)
-ALTER TABLE item ADD weight float AFTER item_type;    
+ALTER TABLE Item ADD Weight float AFTER ItemType;
 
-INSERT INTO item
+INSERT INTO Item
 VALUES
-(4, 'Bane of Light', 'A blade emitting a strange light.', NULL, 'Melee Weapon, 2-handed', 80.4);
+(4, 'Bane of Light', 'A blade emitting a strange light.', FALSE, 'MeleeWeapon, 2-handed', 80.4);
