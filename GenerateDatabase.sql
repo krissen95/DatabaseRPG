@@ -76,7 +76,7 @@ CREATE TABLE PlayerCharacter  # 'Character' is reserved by MySQL
     Inteligence		INTEGER,
     Agility			INTEGER,
     CONSTRAINT PlayerCharacterPK PRIMARY KEY(CharName),
-    CONSTRAINT CharacterOwnerFK FOREIGN KEY (Player) REFERENCES UserAccount(UserID),
+    CONSTRAINT CharacterOwnerFK FOREIGN KEY (UserID) REFERENCES UserAccount(UserID),
     CONSTRAINT PlayerRaceFK FOREIGN KEY(CharRace) REFERENCES Race(RaceID),
     CONSTRAINT PlayerClassFK FOREIGN KEY(CharClass) REFERENCES Class(ClassID)
 );
@@ -144,5 +144,5 @@ CREATE TABLE PlayerInventory
     ItemID          INT NOT NULL,
     Quantity        SMALLINT(4),
     FOREIGN KEY (OwningCharacter) REFERENCES PlayerCharacter(CharName),
-	FOREIGN KEY (Item_ID) REFERENCES Item(Item_ID)
+	FOREIGN KEY (ItemID) REFERENCES Item(ItemID)
 );

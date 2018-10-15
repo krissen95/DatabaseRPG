@@ -25,7 +25,7 @@ VALUES
     ('Gandalf', 1),
     ('Gandalf', 3);
 
-INSERT INTO chatLog
+INSERT INTO ChatLog
 VALUES
 	('2018-10-15 18:20:51', 'JonnyTheBard', NULL, 'I got hacked'),
     ('2018-10-15 18:20:59', 'JamesWolfe', 'JonnyTheBard', 'Shut up you spoony bard'),

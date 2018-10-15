@@ -26,7 +26,6 @@ VALUES
 	('Consumable',  Null),
 	('Ingredient',  Null),
 	('Trash',       Null);
-    ('Consumable',  NULL);
     
 
 INSERT INTO SubscriptionDeal
@@ -53,7 +52,7 @@ VALUES
 #Da er det best å bruke f.eks. "W1M" før tallet (betyr da "Weapon 1-handed Main hand") og VARCHAR i stedet for INT
 INSERT INTO Item
 VALUES
-    (1, 'Dagger', 'Longer than a butter knife, but not quite a proper sword.', FALSE, 'Melee Weapon, 1-handed'),
+    (1, 'Dagger', 'Longer than a butter knife, but not quite a proper sword.', FALSE, 'MeleeWeapon, 1-handed'),
     (2, 'Shield of The Ancients', 'Generic holy shield used in the War of The Ancients. Pretty rusty, so it would not do good in combat.', TRUE, 'Shield'),
     (3, 'Health potion', 'Heals for 50HP, 20 seconds cooldown', FALSE, 'Consumable'),
     (4, 'Iron Cuiras', 'Gives 20 armor', FALSE, 'Cuirass');
