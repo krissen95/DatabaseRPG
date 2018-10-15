@@ -67,7 +67,7 @@ CREATE TABLE Class
 
 CREATE TABLE PlayerCharacter  # 'Character' is reserved by MySQL
 (
-	Player			INTEGER,
+	UserID			INTEGER,
 	CharName		VARCHAR(20),
     CharClass		INTEGER,
     CharRace		INTEGER,
@@ -104,7 +104,7 @@ CREATE TABLE Feat
 CREATE TABLE CharFeats
 (
 	CharName	VARCHAR(20),
-    Feat		INTEGER
+    FeatID      INTEGER
 	#CONSTRAINT CharNameFK FOREIGN KEY(CharName) REFERENCES PlayerCharacter(CharName), -- Insisterer på at den ikkje kan lages
     #CONSTRAINT FeatFK FOREIGN KEY(Feat) REFERENCES Feat(FeatID)
 );

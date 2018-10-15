@@ -48,10 +48,11 @@ VALUES
 INSERT INTO Feat
 VALUES
     (1, 'Firebolt',        1, NULL, 'Learn to cast a bolt of fire.'),
-    (2, 'Heroic Strike',   5, NULL, 'Learn deal a powerful blow.'),
+    (2, 'Heroic Strike',   1, NULL, 'Learn deal a powerful blow.'),
     (3, 'Fireball',        5,    1, 'Learn to cast a huge ball of fire.'),
     (4, 'Medium armor proficiency',  6, NULL, 'Allows you to wear armor of medium weight.'),
-    (5, 'Heavy armor proficiency',  10,    4, 'Allows you to wear armor of heavy weight.');
+    (5, 'Heavy armor proficiency',  10,    4, 'Allows you to wear armor of heavy weight.'),
+    (6, 'Song of Inspiration',       1, NULL, 'Inspires your allies to give them more attack power.');
 
 INSERT INTO UserAccount
 VALUES
@@ -67,7 +68,18 @@ VALUES
 INSERT INTO PlayerCharacter
 VALUES
 	(1, 'JonnyTheBard', 1, 1, 1, 1, 1, 1),
-    (2, 'JamesWolfe', 2, 2, 15, 10, 6, 4);
+    (2, 'JamesWolfe', 2, 2, 15, 10, 6, 4),
+    (3, 'Gandalf',    3, 1,  8, 6, 10, 3);
+
+INSERT INTO CharFeats
+VALUES
+    ('JonnyTheBard', 2),  # JonnyTheBard knows Heroic Strike
+    ('JonnyTheBard', 6),  # and Song of Inspiration
+    ('JamesWolfe', 2),
+    ('JamesWolfe', 4),
+    ('JamesWolfe', 5),
+    ('Gandalf', 1);
+    ('Gandalf', 3);
 
 #Legger inn noen verdier her, initielt kunne ID vært AI, men tenker at å bare ha tall for items ikke er oversiktlig nok
 #Da er det best å bruke f.eks. "W1M" før tallet (betyr da "Weapon 1-handed Main hand") og VARCHAR i stedet for INT
