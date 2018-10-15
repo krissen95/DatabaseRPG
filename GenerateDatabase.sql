@@ -1,5 +1,6 @@
 CREATE SCHEMA DatabaseRPG;
 
+USE DatabaseRPG;
 
 CREATE TABLE UserAccount  # 'user' and 'account' is reserved in MySQL
 (
@@ -122,7 +123,7 @@ CREATE TABLE ChatLog
 CREATE TABLE ItemType
 (
     TypeName        VARCHAR(50) NOT NULL,
-    EquipSlot        VARCHAR(50),
+    EquipSlot       VARCHAR(50),
     CONSTRAINT ItemTypePK PRIMARY KEY (TypeName)
 );
 
@@ -142,6 +143,6 @@ CREATE TABLE PlayerInventory
     OwningCharacter VARCHAR(20) NOT NULL,
     ItemID          INT NOT NULL,
     Quantity        SMALLINT(4),
-    CONSTRAINT OwningCharacterFK FOREIGN KEY (OwningCharacter) REFERENCES PlayerCharacter(CharName),
-    CONSTRAINT ItemIDFK FOREIGN KEY (ItemID) REFERENCES Item(ItemID)
+    FOREIGN KEY (OwningCharacter) REFERENCES PlayerCharacter(CharName),
+	FOREIGN KEY (Item_ID) REFERENCES Item(Item_ID)
 );
