@@ -93,12 +93,12 @@ CREATE TABLE RaceFeatDependency
 
 CREATE TABLE Feat
 (
-	FeatName		INTEGER,
+	FeatID		    INTEGER NOT NULL,
+	FeatName		VARCHAR(30),
 	LevelReq		INTEGER,
-	FeatInformation	VARCHAR(100),
-	Dependency		BOOL,
-	CONSTRAINT FeatNamePK PRIMARY KEY (FeatName)
-	#CONSTRAINT DependencyFeatFK FOREIGN KEY(Dependency) REFERENCES RaceFeatDependency(Dependency) !Did not manage to get this assigned, perhaps a logic flaw..
+    Dependency		INTEGER,  # If the feat requires another feat first
+    FeatInformation	VARCHAR(100),
+	CONSTRAINT FeatPK PRIMARY KEY (FeatID)
 );
 
 CREATE TABLE CharFeats
